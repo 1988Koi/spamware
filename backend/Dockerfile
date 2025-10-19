@@ -1,27 +1,22 @@
-# Base Node.js leve
 FROM node:20-bullseye-slim
 
-# Define pasta de trabalho
 WORKDIR /app
 
-# Copia package.json e package-lock.json
+# Copiar backend e instalar dependências
 COPY package*.json ./
-
-# Instala dependências (incluindo dev para TS)
 RUN npm install
-
-# Copia todo o backend
 COPY . .
 
-# Compila TypeScript
+# Copiar frontend
+COPY ../frontend ./frontend
+
+# Compilar TypeScript
 RUN npm run build
 
-# Exponha a porta esperada pelo Azure
-EXPOSE 4000
+# Porta única para Azure
+EXPOSE 8080
+ENV PORT=8080
+ENV WEBSITES_PORT=8080
 
-# Define variável de ambiente para Azure
-ENV PORT=4000
-ENV WEBSITES_PORT=4000
-
-# Inicia o backend
+# Iniciar backend (serve frontend)
 CMD ["npm", "start"]
