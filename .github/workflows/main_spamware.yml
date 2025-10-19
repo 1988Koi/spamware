@@ -1,39 +1,47 @@
-name: Build and Deploy Docker Images to Azure
+name: Build and Deploy Spamware to Azure
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      # 1️⃣ Checkout do código
+      - uses: actions/checkout@v4
 
+      # 2️⃣ Configura Docker
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # Build backend
+      # 3️⃣ Build backend Docker
       - name: Build backend Docker image
         run: docker build -t spamton-backend ./backend
 
-      # Build frontend
+      # 4️⃣ Build frontend Docker
       - name: Build frontend Docker image
         run: docker build -t spamton-frontend ./frontend
 
-      # Deploy backend to Azure
-      - name: Deploy backend to Azure WebApp
+      # 5️⃣ Login no Azure
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # 6️⃣ Deploy backend
+      - name: Deploy backend to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ secrets.AZURE_WEBAPP_NAME_BACKEND }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_BACKEND }}
           images: spamton-backend:latest
 
-      # Deploy frontend to Azure
-      - name: Deploy frontend to Azure WebApp
+      # 7️⃣ Deploy frontend
+      - name: Deploy frontend to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ secrets.AZURE_WEBAPP_NAME_FRONTEND }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_FRONTEND }}
           images: spamton-frontend:latest
