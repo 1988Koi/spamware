@@ -1,0 +1,10 @@
+# Node
+backend/node_modules
+backend/dist
+
+# Logs
+backend/*.log
+
+# Build outputs
+frontend/node_modules
+frontend/dist

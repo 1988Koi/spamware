@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SHOP</title>
+  <link rel="stylesheet" href="style/styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1><span class="logo glitch" data-text="SPAMTON">Spamware</span> 
+        </h1>
+        <div class="token-ui" id="tokenInfo">Status: <span id="statusText">guest</span></div>
+      </div>
+      <div class="controls">
+        <button class="btn small" id="btnToken">Inserir token</button>
+        <button class="btn alt" id="btnGuest">Ver catálogo</button>
+      </div>
+    </header>
+
+    <div class="spamton-container">
+  <img id="spamton-sprite" src="images/spamton_idle.png" alt="Spamton" />
+</div>
+
+    <main>
+      <div class="panel left">
+        <div class="dialog typewriter" id="dialog">
+          HEY [[BIG SHOT]]!! WELCOME TO MY SHOP!!
+        </div>
+        <div style="height:8px"></div>
+        <div class="row">
+          <button class="btn" id="btnRefresh">Atualizar produtos</button>
+          <button class="btn" id="btnSeed">Seed demo (local)</button>
+        </div>
+        <div style="height:12px"></div>
+        <div class="small-meta">Tip: clique em um produto para ofertas especiais.</div>
+      </div>
+
+      <div class="panel right">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <div><strong>CATÁLOGO</strong> 
+            <span style="color:#888;font-size:13px">— ofertas instantâneas</span>
+          </div>
+          <div class="small-meta" id="productCount">—</div>
+        </div>
+        <div id="products" class="products-grid"></div>
+      </div>
+    </main>
+
+    <footer>
+      <div>Design inspired by Deltarune.</div>
+    </footer>
+  </div>
+
+  <!-- modal -->
+  <div id="modal" class="modal" role="dialog" aria-hidden="true">
+    <div class="box">
+      <h2 id="modalTitle">Offer</h2>
+      <p id="modalBody">...</p>
+      <div style="height:12px"></div>
+      <div style="display:flex;justify-content:flex-end;gap:8px">
+        <button class="btn" id="modalClose">Close</button>
+        <button class="btn alt" id="modalBuy">BUY NOW</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/script.js"></script>
+</body>
+</html>

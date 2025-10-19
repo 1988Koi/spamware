@@ -1,0 +1,21 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: spamton-backend
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - JWT_SECRET=BIGSHOT_SECRET
+      - TYPEORM_DATABASE=':memory:'
+      - TYPEORM_SYNCHRONIZE=true
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: spamton-frontend
+    ports:
+      - "3000:80"
