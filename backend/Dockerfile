@@ -10,6 +10,8 @@ COPY package*.json ./
 # Instala todas as dependências (prod + dev) para compilar TS
 RUN npm install
 
+RUN npm install -g typescript
+
 # Copia todo o backend
 COPY . .
 

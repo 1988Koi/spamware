@@ -36,8 +36,8 @@ AppDataSource.initialize()
   .then(async () => {
     await seedDemoProducts();
     app.listen(PORT, () => {
-      console.log(`Backend rodando na porta ${PORT}`);
-      console.log(`Swagger: http://localhost:${PORT}/api/docs`);
+      const PORT = process.env.PORT || 4000; // pega a porta do Azure
+      app.listen(PORT, () => console.log(`I'm old! and running on ${PORT}`));
     });
   })
   .catch(err => {
