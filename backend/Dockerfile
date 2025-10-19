@@ -1,8 +1,7 @@
 FROM node:20-bullseye-slim
-
 WORKDIR /app
 
-# Copiar backend e instalar dependências
+# Instalar dependências
 COPY package*.json ./
 RUN npm install
 COPY . .
@@ -10,10 +9,11 @@ COPY . .
 # Copiar frontend
 COPY ../frontend ./frontend
 
-# Compilar TypeScript
+# Compilar TypeScript **aqui**
 RUN npm run build
+RUN npm install -g typescript
 
-# Porta única para Azure
+# Porta para Azure
 EXPOSE 8080
 ENV PORT=8080
 ENV WEBSITES_PORT=8080
