@@ -4,6 +4,9 @@ WORKDIR /app
 # Instalar dependências
 COPY package*.json ./
 RUN npm install
+
+RUN npm install -g typescript
+
 COPY . .
 
 # Copiar frontend
@@ -11,7 +14,6 @@ COPY ../frontend ./frontend
 
 # Compilar TypeScript **aqui**
 RUN npm run build
-RUN npm install -g typescript
 
 # Porta para Azure
 EXPOSE 8080
