@@ -1,0 +1,18 @@
+name: autodeploy
+
+on:
+  push:
+    branches: [ gh-actions ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar código
+        uses: actions/checkout@v4
+
+      - name: Build e subir containers
+        run: |
+          docker compose build
+          docker compose up -d
