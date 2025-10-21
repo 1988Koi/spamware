@@ -32,11 +32,12 @@ app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 
-// Servir frontend estático
-app.use(express.static(path.join(__dirname, "../frontend")));
+// Serve frontend estático
+app.use(express.static(path.join(__dirname, "../../frontend")));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend", "index.html"));
+  res.sendFile(path.join(__dirname, "../../frontend/index.html"));
 });
+
 
 // Inicializa DB
 AppDataSource.initialize()
