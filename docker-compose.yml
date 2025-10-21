@@ -1,7 +1,6 @@
 services:
   backend:
     build:
-      context: ./backend
       dockerfile: Dockerfile
     container_name: spamton-backend
     ports:
@@ -14,7 +13,6 @@ services:
 
   frontend:
     build:
-      context: ./frontend
       dockerfile: Dockerfile
     container_name: spamton-frontend
     ports:
